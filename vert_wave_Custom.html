@@ -28,9 +28,9 @@
     {
       // NOTE : according to the WebGL standard, 0.0f is not accepted
       float height = 0.0;
-      float s_contrib = sin(position.x*2.0*3.14159 + u_time);
-      float t_contrib = cos(position.y*2.0*3.14159 + u_time);
-      height = s_contrib*t_contrib;
+      float s_contrib = sin(position.x *2.0*3.14159 * u_time);
+      float t_contrib = cos(position.y * 2.0*3.14159 * u_time);
+      height = s_contrib * t_contrib;
       fColor = vec4(mix(u_maxCol, u_minCol, (height + 1.0)*0.5), 1.0);
 
       // NOTE : gl_Position is always a vec4

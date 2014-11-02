@@ -79,6 +79,7 @@
         u_CameraSpaceDirLightLocation = gl.getUniformLocation(program,"u_CameraSpaceDirLight");
 
 
+
         gl.useProgram(program);
     })();
 
@@ -88,8 +89,7 @@
     var transTex = gl.createTexture();
     var lightTex = gl.createTexture();
     var specTex  = gl.createTexture();
-    //new
-    var perlin   = gl.createTexture();
+
 
     function initLoadedTexture(texture){
         gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -132,6 +132,8 @@
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indicesName);
             gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
         }
+
+
 
         var WIDTH_DIVISIONS = NUM_WIDTH_PTS - 1;
         var HEIGHT_DIVISIONS = NUM_HEIGHT_PTS - 1;
@@ -238,10 +240,15 @@
     document.onmousemove = handleMouseMove;
 
 
+		
     function animate() {
+        
+        
+        
         ///////////////////////////////////////////////////////////////////////////
         // Update
-
+      
+        
         var model = mat4.create();
         mat4.identity(model);
         mat4.rotate(model, 23.4/180*Math.PI, [0.0, 0.0, 1.0]);
@@ -296,6 +303,7 @@
 
         time += 0.001;
         window.requestAnimFrame(animate);
+        
     }
 
     var textureCount = 0;
@@ -304,6 +312,7 @@
         texture.image = new Image();
         texture.image.onload = function() {
             initLoadedTexture(texture);
+
 
             // Animate once textures load.
             if (++textureCount === 6) {
@@ -319,4 +328,5 @@
     initializeTexture(transTex, "assets/earthtrans1024.png");
     initializeTexture(lightTex, "assets/earthlight1024.png");
     initializeTexture(specTex, "assets/earthspec1024.png");
+    
 }());
