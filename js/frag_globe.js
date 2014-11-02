@@ -56,6 +56,7 @@
     var u_BumpLocation;
     var u_timeLocation;
 
+
     (function initializeShader() {
         var vs = getShaderSource(document.getElementById("vs"));
         var fs = getShaderSource(document.getElementById("fs"));
@@ -77,6 +78,7 @@
         u_timeLocation = gl.getUniformLocation(program,"u_time");
         u_CameraSpaceDirLightLocation = gl.getUniformLocation(program,"u_CameraSpaceDirLight");
 
+
         gl.useProgram(program);
     })();
 
@@ -86,6 +88,8 @@
     var transTex = gl.createTexture();
     var lightTex = gl.createTexture();
     var specTex  = gl.createTexture();
+    //new
+    var perlin   = gl.createTexture();
 
     function initLoadedTexture(texture){
         gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -265,6 +269,8 @@
         gl.uniformMatrix4fv(u_ViewLocation, false, view);
         gl.uniformMatrix4fv(u_PerspLocation, false, persp);
         gl.uniformMatrix4fv(u_InvTransLocation, false, invTrans);
+        
+        gl.uniform1f(u_timeLocation, time);
 
         gl.uniform3fv(u_CameraSpaceDirLightLocation, lightdir);
 
